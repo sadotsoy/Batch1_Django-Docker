@@ -1,0 +1,13 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker pull mysql
+    - docker build -t django-service .
+    - docker run --name mysql-docker--22 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=damnificados -d mysql
+
+test:
+  override:
+    - docker run -it --link mysql-docker--22:mysql django-service  sh test.sh
