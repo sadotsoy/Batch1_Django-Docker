@@ -11,7 +11,7 @@ dependencies:
 
 test:
   override:
-    - docker run -it --link mysql-docker--22:mysql django-service  sh test.sh
+    - docker run -it --link mysql-docker--22:mysql -e DJANGO_ENV=development django-service sh test.sh
 
 deployment:
   qa:
